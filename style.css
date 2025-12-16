@@ -36,3 +36,78 @@ table{width:100%;border-collapse:collapse;margin-top:10px}
 th,td{border:1px solid rgba(255,255,255,.18);padding:10px;vertical-align:top}
 th{background:rgba(100,170,255,.2);text-align:left}
 small{color:rgba(232,238,252,.75)}
+/* ===== Task 26.11.25: Responsive table + effects ===== */
+.students-table{
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.students-table th{
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.students-table td{
+  border-left: 1px solid rgba(255,255,255,.12);
+}
+
+.students-table tr td:first-child,
+.students-table tr th:first-child{
+  border-left: none;
+}
+
+/* row hover animation */
+.students-table tbody tr{
+  transition: transform .12s ease, background .12s ease;
+}
+.students-table tbody tr:hover{
+  background: rgba(106,164,255,.10);
+  transform: translateY(-1px);
+}
+
+/* "different borders" vibe */
+.students-table th{
+  border-bottom: 2px solid rgba(106,164,255,.55);
+}
+.students-table td{
+  border-bottom: 1px dashed rgba(255,255,255,.14);
+}
+
+/* Tooltip */
+.tip{
+  position: relative;
+  border-bottom: 1px dotted rgba(106,164,255,.65);
+  cursor: help;
+}
+.tip::after{
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  bottom: 135%;
+  width: max-content;
+  max-width: 240px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.75);
+  color: #e8eefc;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity .12s ease, transform .12s ease;
+}
+.tip:hover::after{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Media query: mobile shows ONLY 2 columns (Number + Full Name) */
+@media (max-width: 600px){
+  .col-course, .col-id, .col-year{
+    display:none;
+  }
+}
